@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>My Site — short tagline</title>
+<meta name="description" content="Short description of the site for SEO." />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --text:#0f1722; --muted:#6b7280; --primary:#0ea5a4;
+    --radius:12px; --maxw:1100px;
+  }
+  *{box-sizing:border-box}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;margin:0;color:var(--text);background:var(--bg);line-height:1.5}
+  .container{max-width:var(--maxw);margin:0 auto;padding:36px}
+  header{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+  .brand{font-weight:700;font-size:1.125rem}
+  nav a{margin-left:18px;text-decoration:none;color:var(--muted)}
+  .hero{display:grid;grid-template-columns:1fr;gap:20px;align-items:center;margin-top:28px}
+  .hero h1{font-size:clamp(1.6rem,3.6vw,2.4rem);margin:0}
+  .hero p{color:var(--muted);margin:8px 0 0}
+  .cta{display:inline-block;margin-top:12px;padding:10px 16px;border-radius:10px;background:var(--primary);color:white;text-decoration:none;font-weight:600}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:28px}
+  .card{padding:18px;border-radius:12px;background:#f8fafb;box-shadow:0 4px 14px rgba(10,10,10,0.03)}
+  footer{text-align:center;color:var(--muted);margin-top:40px;padding:30px 0}
+  /* responsive nav (simple) */
+  @media(min-width:900px){ .hero{grid-template-columns:1fr 420px} }
+  label{display:block;font-weight:600;margin-bottom:6px}
+  input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ee}
+  button{padding:10px 14px;border-radius:8px;background:var(--primary);color:#fff;border:0;font-weight:600;cursor:pointer}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">MySite</div>
+      <nav aria-label="Main">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main id="home" class="hero" role="main">
+      <section>
+        <h1>Simple headline that tells visitors what you do.</h1>
+        <p>One-sentence summary that explains the value. Keep it short and user-focused.</p>
+        <a class="cta" href="#contact">Get Started</a>
+
+        <div class="grid" id="features" aria-label="Features">
+          <div class="card">
+            <h3>Fast</h3>
+            <p style="color:var(--muted)">Optimized performance for fast loading.</p>
+          </div>
+          <div class="card">
+            <h3>Accessible</h3>
+            <p style="color:var(--muted)">Built with semantic markup and keyboard support.</p>
+          </div>
+          <div class="card">
+            <h3>Easy to edit</h3>
+            <p style="color:var(--muted)">Plain HTML + CSS so you control everything.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside style="background:#fff;border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(2,6,23,0.04)">
+        <h3>Contact</h3>
+        <form id="contactForm" onsubmit="return handleSubmit(event)" aria-labelledby="contact">
+          <label for="name">Name</label>
+          <input id="name" type="text" required />
+          <label for="email">Email</label>
+          <input id="email" type="email" required />
+          <label for="message">Message</label>
+          <textarea id="message" rows="4" required></textarea>
+          <div style="margin-top:12px">
+            <button type="submit">Send</button>
+          </div>
+        </form>
+        <p id="formMsg" role="status" style="color:var(--muted);margin-top:10px"></p>
+      </aside>
+    </main>
+
+    <footer id="contact">
+      <small>© <span id="year"></span> MySite — Built with ChatGPT</small>
+    </footer>
+  </div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function handleSubmit(e){
+    e.preventDefault();
+    // Local validation already via required attributes; here we show a friendly message.
+    const name = document.getElementById('name').value.trim();
+    const formMsg = document.getElementById('formMsg');
+    formMsg.textContent = "Thanks, " + (name||"there") + "! This demo doesn't send messages. To actually receive submissions, add a backend or use Formspree/Netlify Forms.";
+    return false;
+  }
+</script>
+</body>
+</html>
